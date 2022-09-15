@@ -1,38 +1,37 @@
 using System;
 using ExcelLibrary.SpreadSheet;
-using NUnit.Framework;
+using Xunit;
 
 namespace ExcelLibrary.Test.Issue
 {
-    [TestFixture]
     public class Issue10_Test
     {
-        [Test]
+        [Fact]
         public void Test()
         {
-            Workbook workbook = new Workbook();
-            Worksheet worksheet = new Worksheet("Test");
+            var workbook = new Workbook();
+            var worksheet = new Worksheet("Test");
             workbook.Worksheets.Add(worksheet);
-            
-            DateTime date = new DateTime(2009, 2, 13, 11, 30, 45);
+
+            var date = new DateTime(2009, 2, 13, 11, 30, 45);
             worksheet.Cells[0, 0] = new Cell(date);
             worksheet.Cells[0, 0].DateTimeValue = date;
 
-            Assert.AreEqual(date, worksheet.Cells[0, 0].DateTimeValue);
+            Assert.Equal(date, worksheet.Cells[0, 0].DateTimeValue);
         }
 
-        [Test]
+        [Fact]
         public void RelatedTest()
         {
-            Workbook workbook = new Workbook();
-            Worksheet worksheet = new Worksheet("Test");
+            var workbook = new Workbook();
+            var worksheet = new Worksheet("Test");
             workbook.Worksheets.Add(worksheet);
 
-            DateTime date = new DateTime(2009, 2, 13, 11, 30, 45);
+            var date = new DateTime(2009, 2, 13, 11, 30, 45);
             worksheet.Cells[0, 0] = new Cell(date);
-            
 
-            Assert.IsNotNull(worksheet.Cells[0, 0].Format);
+
+            Assert.NotNull(worksheet.Cells[0, 0].Format);
         }
     }
 }

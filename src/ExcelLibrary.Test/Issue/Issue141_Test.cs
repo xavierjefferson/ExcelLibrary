@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using ExcelLibrary.CompoundDocumentFormat;
-using NUnit.Framework;
+using Xunit;
 
 namespace ExcelLibrary.Test.Issue
 {
-    [TestFixture]
-    class Issue141_Test
+    public class Issue141_Test
     {
-        [Test]
+        [Fact]
         public void Test()
         {
-            string filename = Path.GetTempFileName();
+            var filename = Path.GetTempFileName();
 
             try
             {
                 // create invalid file for read
                 using (var writer = new StreamWriter(filename))
+                {
                     writer.WriteLine("test");
+                }
 
                 try
                 {
@@ -28,7 +26,7 @@ namespace ExcelLibrary.Test.Issue
                 }
                 catch
                 {
-                    Assert.IsTrue(true, "Expection trigger.");
+                    Assert.True(true, "Expection trigger.");
                 }
             }
             finally

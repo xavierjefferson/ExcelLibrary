@@ -4,8 +4,6 @@ using System.Text;
 
 namespace QiHe.CodeLib
 {
-    public enum NodeColor { Red, Black }
-
     public class RedBlackTreeNode<TItem> : BinaryTreeNodeBase<TItem, RedBlackTreeNode<TItem>>
     {
         public NodeColor Color;

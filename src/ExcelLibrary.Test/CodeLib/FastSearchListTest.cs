@@ -1,59 +1,60 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using QiHe.CodeLib;
+using Xunit;
 
 namespace ExcelLibrary.Test.CodeLib
 {
-    [TestFixture]
     public class FastSearchListTest
     {
-        [Test]
+        [Fact]
         public void SimpleTest()
         {
-            IList<String> list = new FastSearchList<String>();
+            IList<string> list = new FastSearchList<string>();
 
             list.Add("Item 1");
             list.Add("Item 2");
             list.Add("Item 3");
 
-            Assert.AreEqual(3, list.Count);
-            Assert.AreEqual("Item 1", list[0]);
-            Assert.AreEqual("Item 2", list[1]);
-            Assert.AreEqual("Item 3", list[2]);
+            Assert.Equal(3, list.Count);
+            Assert.Equal("Item 1", list[0]);
+            Assert.Equal("Item 2", list[1]);
+            Assert.Equal("Item 3", list[2]);
 
-            Assert.AreEqual(0, list.IndexOf("Item 1"));
-            Assert.AreEqual(1, list.IndexOf("Item 2"));
-            Assert.AreEqual(2, list.IndexOf("Item 3"));
+            Assert.Equal(0, list.IndexOf("Item 1"));
+            Assert.Equal(1, list.IndexOf("Item 2"));
+            Assert.Equal(2, list.IndexOf("Item 3"));
         }
 
-        [Test]
+        [Fact]
         public void AddDuplicateTest()
         {
-            IList<String> list = new FastSearchList<String>();
+            IList<string> list = new FastSearchList<string>();
 
             list.Add("Item 1");
             list.Add("Item 1");
 
-            Assert.AreEqual(2, list.Count);
-            Assert.AreEqual(0, list.IndexOf("Item 1"));
+            Assert.Equal(2, list.Count);
+            Assert.Equal(0, list.IndexOf("Item 1"));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void InsertDuplicateTest()
         {
-            IList<String> list = new FastSearchList<String>();
+            Assert.Throws<ArgumentException>(() =>
+            {
+                IList<string> list = new FastSearchList<string>();
 
-            list.Add("Item 1");
-            list.Insert(1, "Item 1");
+                list.Add("Item 1");
+                list.Insert(1, "Item 1");
+            });
         }
 
 
-        [Test]
+        [Fact]
         public void RemoveAtTest()
         {
-            IList<String> list = new FastSearchList<String>();
+            IList<string> list = new FastSearchList<string>();
 
             list.Add("Item 1");
             list.Add("Item 2");
@@ -61,27 +62,27 @@ namespace ExcelLibrary.Test.CodeLib
 
             list.RemoveAt(0);
 
-            Assert.AreEqual(2, list.Count);
-            Assert.AreEqual("Item 2", list[0]);
-            Assert.AreEqual("Item 3", list[1]);
-            Assert.AreEqual(0, list.IndexOf("Item 2"));
-            Assert.AreEqual(1, list.IndexOf("Item 3"));
+            Assert.Equal(2, list.Count);
+            Assert.Equal("Item 2", list[0]);
+            Assert.Equal("Item 3", list[1]);
+            Assert.Equal(0, list.IndexOf("Item 2"));
+            Assert.Equal(1, list.IndexOf("Item 3"));
 
             list.Add("Item 1");
 
-            Assert.AreEqual(3, list.Count);
-            Assert.AreEqual("Item 2", list[0]);
-            Assert.AreEqual("Item 3", list[1]);
-            Assert.AreEqual("Item 1", list[2]);
-            Assert.AreEqual(0, list.IndexOf("Item 2"));
-            Assert.AreEqual(1, list.IndexOf("Item 3"));
-            Assert.AreEqual(2, list.IndexOf("Item 1"));
+            Assert.Equal(3, list.Count);
+            Assert.Equal("Item 2", list[0]);
+            Assert.Equal("Item 3", list[1]);
+            Assert.Equal("Item 1", list[2]);
+            Assert.Equal(0, list.IndexOf("Item 2"));
+            Assert.Equal(1, list.IndexOf("Item 3"));
+            Assert.Equal(2, list.IndexOf("Item 1"));
         }
 
-        [Test]
+        [Fact]
         public void RemoveTest()
         {
-            IList<String> list = new FastSearchList<String>();
+            IList<string> list = new FastSearchList<string>();
 
             list.Add("Item 1");
             list.Add("Item 2");
@@ -89,27 +90,27 @@ namespace ExcelLibrary.Test.CodeLib
 
             list.Remove("Item 2");
 
-            Assert.AreEqual(2, list.Count);
-            Assert.AreEqual("Item 1", list[0]);
-            Assert.AreEqual("Item 3", list[1]);
-            Assert.AreEqual(0, list.IndexOf("Item 1"));
-            Assert.AreEqual(1, list.IndexOf("Item 3"));
+            Assert.Equal(2, list.Count);
+            Assert.Equal("Item 1", list[0]);
+            Assert.Equal("Item 3", list[1]);
+            Assert.Equal(0, list.IndexOf("Item 1"));
+            Assert.Equal(1, list.IndexOf("Item 3"));
 
             list.Add("Item 4");
 
-            Assert.AreEqual(3, list.Count);
-            Assert.AreEqual("Item 1", list[0]);
-            Assert.AreEqual("Item 3", list[1]);
-            Assert.AreEqual("Item 4", list[2]);
-            Assert.AreEqual(0, list.IndexOf("Item 1"));
-            Assert.AreEqual(1, list.IndexOf("Item 3"));
-            Assert.AreEqual(2, list.IndexOf("Item 4"));
+            Assert.Equal(3, list.Count);
+            Assert.Equal("Item 1", list[0]);
+            Assert.Equal("Item 3", list[1]);
+            Assert.Equal("Item 4", list[2]);
+            Assert.Equal(0, list.IndexOf("Item 1"));
+            Assert.Equal(1, list.IndexOf("Item 3"));
+            Assert.Equal(2, list.IndexOf("Item 4"));
         }
 
-        [Test]
+        [Fact]
         public void InsertTest()
         {
-            IList<String> list = new FastSearchList<String>();
+            IList<string> list = new FastSearchList<string>();
 
             list.Add("Item 1");
             list.Add("Item 2");
@@ -117,16 +118,15 @@ namespace ExcelLibrary.Test.CodeLib
 
             list.Insert(1, "Item 1.5");
 
-            Assert.AreEqual(4, list.Count);
-            Assert.AreEqual("Item 1", list[0]);
-            Assert.AreEqual("Item 1.5", list[1]);
-            Assert.AreEqual("Item 2", list[2]);
-            Assert.AreEqual("Item 3", list[3]);
-            Assert.AreEqual(0, list.IndexOf("Item 1"));
-            Assert.AreEqual(1, list.IndexOf("Item 1.5"));
-            Assert.AreEqual(2, list.IndexOf("Item 2"));
-            Assert.AreEqual(3, list.IndexOf("Item 3"));
+            Assert.Equal(4, list.Count);
+            Assert.Equal("Item 1", list[0]);
+            Assert.Equal("Item 1.5", list[1]);
+            Assert.Equal("Item 2", list[2]);
+            Assert.Equal("Item 3", list[3]);
+            Assert.Equal(0, list.IndexOf("Item 1"));
+            Assert.Equal(1, list.IndexOf("Item 1.5"));
+            Assert.Equal(2, list.IndexOf("Item 2"));
+            Assert.Equal(3, list.IndexOf("Item 3"));
         }
     }
 }
-

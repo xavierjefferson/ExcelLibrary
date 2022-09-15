@@ -35,15 +35,15 @@ namespace ExcelLibrary.BinaryFileFormat
             Palette.Add(0x3E, Color.FromArgb(0x33, 0x33, 0x99));
             Palette.Add(0x3F, Color.FromArgb(0x33, 0x33, 0x33));
 
-            Palette.Add(0x40, SystemColors.Window);
-            Palette.Add(0x41, SystemColors.WindowText);
-            Palette.Add(0x43, SystemColors.WindowFrame);//dialogue background colour
-            Palette.Add(0x4D, SystemColors.ControlText);//text colour for chart border lines
-            Palette.Add(0x4E, SystemColors.Control); //background colour for chart areas
-            Palette.Add(0x4F, Color.Black); //Automatic colour for chart border lines
-            Palette.Add(0x50, SystemColors.Info);
-            Palette.Add(0x51, SystemColors.InfoText);
-            Palette.Add(0x7FFF, SystemColors.WindowText);
+            //Palette.Add(0x40, SystemColors.Window);
+            //Palette.Add(0x41, SystemColors.WindowText);
+            //Palette.Add(0x43, SystemColors.WindowFrame);//dialogue background colour
+            //Palette.Add(0x4D, SystemColors.ControlText);//text colour for chart border lines
+            //Palette.Add(0x4E, SystemColors.Control); //background colour for chart areas
+            //Palette.Add(0x4F, Color.Black); //Automatic colour for chart border lines
+            //Palette.Add(0x50, SystemColors.Info);
+            //Palette.Add(0x51, SystemColors.InfoText);
+            //Palette.Add(0x7FFF, SystemColors.WindowText);
         }
 
         public Color this[int index]
